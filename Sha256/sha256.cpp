@@ -3,51 +3,6 @@
 
 using std::string;
 
-/*
-* Convert string to binary
-* Append 1 to end
-* Pad with 0s until data is a multiple of 512, minus 64 bits
-* Append 64 bits of a big-endian int represenitng the length of the original input
-* 
-* Initialize Hash Values (h)
-*		First 32 bits of the fractional parts of the square roots of the first 8 primes
-* 
-* Initialize Round Constants (k)
-*		First 32 bits of the fractional parts of the cube roots of the first 64 primes
-* 
-* 
-* The following steps happen for each 512 bit "chunk" of data
-* 
-* Take data from first chunk and copy it into a new array where each entry is 32 bits
-* Add 48 more 32-bit entries for a total of 64 entries (these entries are all 0s)
-* For i from arr[16...63]
-*		s0 = (arr[i-15] rightrotate 7) xor (arr[i-15] rightrotate 18) xor (arr[i-15] rightshift 3)
-*		s1 = (arr[i-2} rightrotate 17) xor (arr[i-2] rightrotate 19) xor (arr[i-2] rightshift 10)
-*		arr[i] = (arr[i-16] + s0 + arr[i-7] + s1) % 2^32
-* 
-* Compression
-* Initialize a, b, c, d, e, f, g, h
-* Set them repectively to the 8 hashvalues from earlier
-* for i 0 through 63
-*	S1 = (e rightrotate 6) xor (e rightrotate 11) xor (e rightrotate 25)
-*	ch = (e & f) xor (!e) & g)
-*	temp1 = h + S1 + ch + k[i] + arr[i]
-*	S0 = (a rightrotate 2) xor (a rightrotate 13) xor (a rightrotate 22)
-*	maj = (a & b) xor (a & c) xor (b & c)
-*	temp2 = S0 + maj
-*	h = g; g = f; f = e; e = d + temp1; d = c; c = b; b = a; a = temp1 + temp2;
-*	All addition is calculated % 2^32
-* 
-* After compression but while still in the chunk loop, modify the hash values
-* h0 = h0 + a
-* h1 = h1 + b
-* ...
-* h7 = h7 + h
-* 
-* The hash is the 8 hash values appended to each other
-* return h0 append h1 append h2 ... append h7
-*/
-
 const unsigned int k[64] = {
 	0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
 	0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
