@@ -1,5 +1,6 @@
 //Chris Manlove 11/9/2022
 #include "sha256.h"
+#include <cstring>
 
 using std::string;
 
@@ -130,7 +131,8 @@ string sha256(char* data) {
 
 	char s[3];
 	for (int i = 0; i < 32; i++) {
-		sprintf_s(s, "%02x", hash[i]);
+		//sprintf_s(s, "%02x", hash[i]);
+		sprintf(s, "%02x", hash[i]);
 		hashStr += s;
 	}
 	return hashStr;
