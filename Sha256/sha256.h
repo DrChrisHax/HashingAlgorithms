@@ -27,5 +27,6 @@ void SHA256Init(SHA256_CTX* ctx);
 void SHA256Update(SHA256_CTX* ctx, unsigned char data[], unsigned int len);
 void SHA256Final(SHA256_CTX* ctx, unsigned char hash[]);
 std::string sha256(char* data);
+//unsigned char* sha256(char* data);
 
 #endif

@@ -15,6 +15,8 @@ const unsigned int k[64] = {
 	0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
 };
 
+//unsigned char hash[32];
+
 void SHA256Transform(SHA256_CTX* ctx, unsigned char data[]) {
 	unsigned int a, b, c, d, e, f, g, h, i, j, t1, t2, m[64];
 
@@ -135,5 +137,5 @@ string sha256(char* data) {
 		sprintf(s, "%02x", hash[i]);
 		hashStr += s;
 	}
-	return hashStr;
+	return hashStr; 
 }
