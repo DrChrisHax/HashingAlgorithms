@@ -23,8 +23,9 @@ void SHA256Transform(SHA256_CTX* ctx, unsigned char data[]) {
 	for (i = 0, j = 0; i < 16; i++, j += 4) {
 		m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
 	}
-	for (; i < 64; i++) {
+	while (i < 64) {
 		m[i] = SIG1(m[i - 2]) + m[i - 7] + SIG0(m[i - 15]) + m[i - 16];
+		i++;
 	}
 	a = ctx->state[0];
 	b = ctx->state[1];
