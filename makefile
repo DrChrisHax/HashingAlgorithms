@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -g -std=c++17 -O2
 
 $(EXE): $(OBJ) makefile
 		@rm -f $(EXE)
-		$(CXX) *.cpp $(CXXFLAGS) $(LINKERFLAGS) -o $(EXE)
+		$(CXX) src/*.cpp $(CXXFLAGS) $(LINKERFLAGS) -o $(EXE)
 clean:
 		@rm -f $(EXE)
 run: $(EXE)
